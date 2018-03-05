@@ -38,31 +38,58 @@ module.controller('KbnRadarVisController', function ($scope, $element, $timeout,
 
 
       // Retrieve the metrics aggregation configured
-      if($scope.vis.aggs.bySchemaName['sommet']){
-        var metricsAgg_xAxis = $scope.vis.aggs.bySchemaName['sommet'][0];
-        if ($scope.vis.aggs.bySchemaName['sommet'][0].type.name != "count"){
-          var metricsAgg_xAxis_name = $scope.vis.aggs.bySchemaName['sommet'][0].params.field.displayName;
-        }else{
-          var metricsAgg_xAxis_name = ""
+      if($scope.vis.aggs.bySchemaName['vertex']){
+        var fields = []
+        var titles = []
+        var customLabels = []
+        var quantityVertices = $scope.vis.aggs.bySchemaName['vertex'].length;
+        for (let index = 0; index < $scope.vis.aggs.bySchemaName['vertex'].length; index++) {
+          const metric = $scope.vis.aggs.bySchemaName['vertex'][index];
+
+          if (metric.type.name != "count") {
+            fields.push(metric.params.field.displayName)
+          } else {
+            fields.push("")
+          }
+          titles.push(metric.type.title)
+
+          if (metric.params.customLabel) {
+            customLabels.push(metric.params.customLabel)
+          } else {
+            customLabels.push(metric.type.title + " " + fields[fields.length-1])
+          }
         }
-        var metricsAgg_xAxis_title = $scope.vis.aggs.bySchemaName['sommet'][0].type.title
       }
 
-
-      var labels = []
       var dataParsed = [];
       for (let index = 0; index < resp.tables[0].rows.length; index++) {
         const bucket = resp.tables[0].rows[index];
-        labels.push(bucket[0])
-        dataParsed.push(bucket[1])
+        var valuesBucket = []
+        var label = bucket[0]
+        for (let index = 1; index < bucket.length; index++) {
+          valuesBucket.push(bucket[index])
+        }
+        var color = randomColor({
+            luminosity: 'light',
+            format: 'rgba',
+            alpha: 0.2
+        });
+        // Border color must have a complete alpha
+        var borderColor = color.replace(/[^,]+(?=\))/, '1')
+        var bucketArea = {
+          label: label,
+          data: valuesBucket,
+          backgroundColor: color,
+          borderColor: borderColor,
+          pointBackgroundColor: borderColor,
+          pointBorderColor: "#fff"
+        }
+        dataParsed.push(bucketArea)
       }
-      var colors = randomColor({ hue: 'random', luminosity: 'bright', count: 54 });
+      // Colors and data compelte with the dataParsed and the labels
       var dataComplete = {
-        datasets: [{
-          data: dataParsed,
-          backgroundColor: colors //["rgb(255, 99, 132)", "rgb(75, 192, 192)", "rgb(255, 205, 86)", "rgb(201, 203, 207)", "rgb(54, 162, 235)"]
-        }],
-        labels: labels
+        datasets: dataParsed,
+        labels: customLabels
       }
     }
 
@@ -71,34 +98,24 @@ module.controller('KbnRadarVisController', function ($scope, $element, $timeout,
       var canvas = document.getElementById('radar_chart_' + $scope.$id);
       var ctx = canvas.getContext('2d');
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      /*var dataExample = {
-        datasets: [{
-          data: [10, 20, 30]
-        }],
-  
-        // These labels appear in the legend and in the tooltips when hovering different arcs
-        labels: [
-          'Red',
-          'Yellow',
-          'Blue'
-        ]
-      };*/
-      /*var options = {
-        legend: {
-          display: false
-        }
-      }*/
+
       var data = {
         labels: ['Running', 'Swimming', 'Eating', 'Cycling'],
           datasets: [{
             data: [20, 10, 14, 12]
           }]
       }
+      var options = {
+        scale: {
+          // Hides the scale
+          display: true
+        }
+      };
 
       $scope.radarchart = new Chartjs(ctx, {
-        data: data,
-        type: 'radar'
-        //options: options
+        data: dataComplete,
+        type: 'radar',
+        options: options
       });
     });
 

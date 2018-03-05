@@ -45,8 +45,8 @@ function RadarVisTypeProvider(Private) {
       schemas: new Schemas([
         {
           group: 'metrics',
-          name: 'sommet',
-          title: 'Sommet',
+          name: 'vertex',
+          title: 'Vertex',
           aggFilter: '!geo_centroid',
           min: 1,
         },
