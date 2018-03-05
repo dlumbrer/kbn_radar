@@ -1,0 +1,19 @@
+{
+  "name": "kbn_radar",
+  "version": "0.0.1",
+  "kibana": {
+    "version": "kibana"
+  },
+  "authors": [
+  "David Moreno Lumbreras <dmorenolumb@gmail.com>"
+  ],
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dlumbrer/kbn_radar"
+  },
+  "dependencies": {
+    "chart.js": "2.7.1",
+    "randomcolor": "0.5.3"
+  }
+}
