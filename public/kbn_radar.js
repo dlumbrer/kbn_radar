@@ -1,5 +1,6 @@
 import 'plugins/kbn_radar/kbn_radar.less';
 import 'plugins/kbn_radar/kbn_radar_controller';
+import 'plugins/kbn_radar/kbn_radar_params';
 import 'ui/agg_table';
 import 'ui/agg_table/agg_table_group';
 import 'ui/agg_table';
@@ -39,9 +40,15 @@ function RadarVisTypeProvider(Private) {
     description: 'Display values in a radar chart',
       category: CATEGORY.BASIC,
     visConfig: {
+      defaults: {
+        normalize: false,
+        vertexScale: {from: 1, to: 5},
+        rangesMetrics: []
+      },
       template: RadarVisTemplate
     },
     editorConfig: {
+      optionsTemplate: '<kbn-radar-params></kbn-radar-params>',
       schemas: new Schemas([
         {
           group: 'metrics',
