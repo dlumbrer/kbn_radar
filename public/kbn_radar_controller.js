@@ -143,22 +143,10 @@ module.controller('KbnRadarVisController', function ($scope, $element, $timeout,
           reverse: false,
           ticks: {
             beginAtZero: true,
+            min: 0,
+            max: vertexMaxScale
           },
-          pointLabels: {
-            callback: function (pointLabel) {
-              if (pointLabel.length > 10)
-                return pointLabel.substring(0, 10) + '...';
-              else
-                return pointLabel
-            }
-          }
-
         },
-        scaleOverride: false,
-        scaleSteps: 5,
-        scaleStepWidth: 20,
-        scaleStartValue: 100,
-        
       };
 
       $scope.radarchart = new Chartjs(ctx, {
