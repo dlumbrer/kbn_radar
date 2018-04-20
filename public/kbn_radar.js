@@ -42,8 +42,7 @@ function RadarVisTypeProvider(Private) {
     visConfig: {
       defaults: {
         normalize: false,
-        vertexScale: {from: 1, to: 5},
-        rangesMetrics: []
+        vertexScale: {from: 0, to: 5},
       },
       template: RadarVisTemplate
     },

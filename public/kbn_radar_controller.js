@@ -90,8 +90,18 @@ module.controller('KbnRadarVisController', function ($scope, $element, $timeout,
         var label = bucket[0]
         for (let index = 1; index < bucket.length; index++) {
           if(normalizeData){
-            //normalizo entre 1 y el valor maximo de todos los valores de la metrica
-            valuesBucket.push(normalize(bucket[index], Math.max(...valuesMetrics[index]), 1, vertexMaxScale))
+            var normMin = 1;
+            var normMax = Math.max(...valuesMetrics[index]);
+            
+            if($scope.vis.params.rangesMetrics){
+              if ($scope.vis.params.rangesMetrics[index - 1].from){
+                normMin = $scope.vis.params.rangesMetrics[index - 1].from;
+              }
+              if ($scope.vis.params.rangesMetrics[index - 1].to) {
+                normMax = $scope.vis.params.rangesMetrics[index - 1].to;
+              }
+            }
+            valuesBucket.push(normalize(bucket[index], normMax, normMin, vertexMaxScale))
           }else{
             valuesBucket.push(bucket[index]);
           }
