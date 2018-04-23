@@ -19,6 +19,7 @@ module.controller('KbnRadarVisController', function ($scope, $element, $timeout,
   const randomColor = require('randomcolor');
 
   function normalize(val, max, min, scale) { return (scale * (val - min) / (max - min)); }
+  function revertNormalize(final, max, min, scale) { return ((final / scale)*(max - min) + min); }
 
 
   $scope.$watchMulti(['esResponse'], function ([resp]) {
@@ -87,6 +88,7 @@ module.controller('KbnRadarVisController', function ($scope, $element, $timeout,
       for (let index = 0; index < resp.tables[0].rows.length; index++) {
         const bucket = resp.tables[0].rows[index];
         var valuesBucket = []
+        var originWithoutNormalize = []
         var label = bucket[0]
         for (let index = 1; index < bucket.length; index++) {
           if(normalizeData){
@@ -105,6 +107,7 @@ module.controller('KbnRadarVisController', function ($scope, $element, $timeout,
           }else{
             valuesBucket.push(bucket[index]);
           }
+          originWithoutNormalize.push(bucket[index]);
         }
         var color = randomColor({
             luminosity: 'light',
@@ -116,6 +119,7 @@ module.controller('KbnRadarVisController', function ($scope, $element, $timeout,
         var bucketArea = {
           label: label,
           data: valuesBucket,
+          dataOrig: originWithoutNormalize,
           backgroundColor: color,
           borderColor: borderColor,
           pointBackgroundColor: borderColor,
@@ -136,18 +140,54 @@ module.controller('KbnRadarVisController', function ($scope, $element, $timeout,
       var ctx = canvas.getContext('2d');
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      var options = {
-        //responsive: false,
-        //maintainAspectRadio: false,
-        scale: {
-          reverse: false,
-          ticks: {
-            beginAtZero: true,
-            min: 0,
-            max: vertexMaxScale
+      // if the data is normalizated, It is neccesary to change the tooltip and scale
+
+      if(normalizeData){
+        var options = {
+          //responsive: false,
+          //maintainAspectRadio: false,
+          scale: {
+            reverse: false,
+            ticks: {
+              beginAtZero: true,
+              min: 0,
+              max: vertexMaxScale
+            },
           },
-        },
-      };
+          tooltips: {
+            callbacks: {
+              label: function (tooltipItem, data) {
+                var dataset = data['datasets'][tooltipItem['datasetIndex']];
+                var value = dataset['dataOrig'][tooltipItem['index']];
+                return dataset['label'] + ": " + value ;
+              },
+              afterLabel: function (tooltipItem, data) {
+                var dataset = data['datasets'][tooltipItem['datasetIndex']];
+                var value = dataset['data'][tooltipItem['index']];
+                return 'Normalizated value: ' + value;
+              }
+            },
+            backgroundColor: '#000',
+            titleFontSize: 16,
+            titleFontColor: '#FFF',
+            bodyFontColor: '#FFF',
+            bodyFontSize: 14,
+            displayColors: true
+          }
+        };
+      }else{
+        var options = {
+          //responsive: false,
+          //maintainAspectRadio: false,
+          scale: {
+            reverse: false,
+            ticks: {
+              beginAtZero: true,
+              min: 0
+            },
+          },
+        };
+      }
 
       $scope.radarchart = new Chartjs(ctx, {
         data: dataComplete,
