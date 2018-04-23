@@ -140,12 +140,16 @@ module.controller('KbnRadarVisController', function ($scope, $element, $timeout,
       var ctx = canvas.getContext('2d');
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+      var parent = document.getElementById('radar-chart_' + $scope.$id);
+      canvas.width = parent.offsetWidth - 30;
+      canvas.height = parent.offsetHeight;
+
       // if the data is normalizated, It is neccesary to change the tooltip and scale
 
       if(normalizeData){
         var options = {
-          //responsive: false,
-          //maintainAspectRadio: false,
+          responsive: true,
+          maintainAspectRadio: false,
           scale: {
             reverse: false,
             ticks: {
@@ -177,8 +181,8 @@ module.controller('KbnRadarVisController', function ($scope, $element, $timeout,
         };
       }else{
         var options = {
-          //responsive: false,
-          //maintainAspectRadio: false,
+          responsive: true,
+          maintainAspectRadio: false,
           scale: {
             reverse: false,
             ticks: {
