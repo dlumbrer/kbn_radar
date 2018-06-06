@@ -163,7 +163,26 @@ module.controller('KbnRadarVisController', function ($scope, $element, $timeout,
               label: function (tooltipItem, data) {
                 var dataset = data['datasets'][tooltipItem['datasetIndex']];
                 var value = dataset['dataOrig'][tooltipItem['index']];
-                return dataset['label'] + ": " + value ;
+                var labelsWithSameValue = []
+                for (let i = 0; i < data['datasets'].length; i++) {
+                  const e = data['datasets'][i];
+                  var v = e['dataOrig'][tooltipItem['index']];
+                  if(v == value){
+                    labelsWithSameValue.push(e.label)
+                  }
+                }
+
+                //Draw good way
+                var str = "";
+                for (let index = 0; index < labelsWithSameValue.length; index++) {
+                  const element = labelsWithSameValue[index];
+                  if(index == labelsWithSameValue.length-1){
+                    str += element;
+                    continue
+                  }
+                  str += element + ", " 
+                }
+                return str + ": " + value ;
               },
               afterLabel: function (tooltipItem, data) {
                 var dataset = data['datasets'][tooltipItem['datasetIndex']];
@@ -176,7 +195,7 @@ module.controller('KbnRadarVisController', function ($scope, $element, $timeout,
             titleFontColor: '#FFF',
             bodyFontColor: '#FFF',
             bodyFontSize: 14,
-            displayColors: true
+            displayColors: false
           }
         };
       }else{
@@ -190,8 +209,48 @@ module.controller('KbnRadarVisController', function ($scope, $element, $timeout,
               min: 0
             },
           },
+          tooltips: {
+            callbacks: {
+              label: function (tooltipItem, data) {
+                var dataset = data['datasets'][tooltipItem['datasetIndex']];
+                var value = dataset['data'][tooltipItem['index']];
+                var labelsWithSameValue = []
+                for (let i = 0; i < data['datasets'].length; i++) {
+                  const e = data['datasets'][i];
+                  var v = e['data'][tooltipItem['index']];
+                  if(v == value){
+                    labelsWithSameValue.push(e.label)
+                  }
+                }
+
+                //Draw good way
+                var str = "";
+                for (let index = 0; index < labelsWithSameValue.length; index++) {
+                  const element = labelsWithSameValue[index];
+                  if(index == labelsWithSameValue.length-1){
+                    str += element;
+                    continue
+                  }
+                  str += element + ", " 
+                }
+                return str + ": " + value ;
+              }
+            },
+            backgroundColor: '#000',
+            titleFontSize: 16,
+            titleFontColor: '#FFF',
+            bodyFontColor: '#FFF',
+            bodyFontSize: 14,
+            displayColors: false
+          }
         };
       }
+
+      var original = Chart.defaults.global.legend.onClick;
+      Chartjs.defaults.global.legend.onClick = function(e, legendItem) {
+        console.log(e, legendItem);
+        original.call(this, e, legendItem);
+      };
 
       $scope.radarchart = new Chartjs(ctx, {
         data: dataComplete,
