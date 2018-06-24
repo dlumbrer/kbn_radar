@@ -8,7 +8,7 @@ import 'ui/agg_table/agg_table_group';
 
 import { CATEGORY } from 'ui/vis/vis_category';
 import { VisFactoryProvider } from 'ui/vis/vis_factory';
-import { VisSchemasProvider } from 'ui/vis/editors/default/schemas';
+import { Schemas } from 'ui/vis/editors/default/schemas';
 import RadarVisTemplate from 'plugins/kbn_radar/kbn_radar.html';
 import { VisTypesRegistryProvider } from 'ui/registry/vis_types';
 import image from './images/radar.svg';
@@ -26,7 +26,6 @@ VisTypesRegistryProvider.register(RadarVisTypeProvider);
 // define the RadarVisType
 function RadarVisTypeProvider(Private) {
   const VisFactory = Private(VisFactoryProvider);
-  const Schemas = Private(VisSchemasProvider);
 
   // define the RadarVisController which is used in the template
   // by angular's ng-controller directive
@@ -38,7 +37,7 @@ function RadarVisTypeProvider(Private) {
     title: 'Radar',
     image,
     description: 'Display values in a radar chart',
-      category: CATEGORY.BASIC,
+    category: CATEGORY.BASIC,
     visConfig: {
       defaults: {
         normalize: false,
@@ -55,6 +54,9 @@ function RadarVisTypeProvider(Private) {
           title: 'Vertex',
           aggFilter: '!geo_centroid',
           min: 1,
+          defaults: [
+            { type: 'count', schema: 'vertex' }
+          ]
         },
         {
           group: 'buckets',
