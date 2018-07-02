@@ -20,7 +20,8 @@ This is a plugin developed for Kibana that you can build radar visualziations
 
 1. Move into plugins folder:  `cd KIBANA_HOME/plugins`
 2. Clone the source code (**it depends on your Kibana's version**):
-    - Kibana 6: `git clone https://github.com/dlumbrer/kbn_radar.git -b 6-dev`
+    - Kibana 6.3 or upper: `git clone https://github.com/dlumbrer/kbn_radar.git -b 6-dev`
+    - Kibana 6.0, 6.1 or 6.2: `git clone https://github.com/dlumbrer/kbn_radar.git -b 6.2-dev`
 
 3. Install dependencies:
       ```
