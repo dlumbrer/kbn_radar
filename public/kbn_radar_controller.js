@@ -40,7 +40,9 @@ module.controller('KbnRadarVisController', function ($scope, $element, $timeout,
       //Names of the field that have been selected
       if ($scope.vis.aggs.bySchemaName['field']) {
         var firstFieldAggId = $scope.vis.aggs.bySchemaName['field'][0].id;
-        var fieldAggName = $scope.vis.aggs.bySchemaName['field'][0].params.field.displayName;
+        if ($scope.vis.aggs.bySchemaName['field'][0].params.field) {
+          var fieldAggName = $scope.vis.aggs.bySchemaName['field'][0].params.field.displayName;
+        }
       }
 
 
