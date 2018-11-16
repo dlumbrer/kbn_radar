@@ -19,7 +19,7 @@ module.controller('KbnRadarVisController', function ($scope, $element, $timeout,
   const randomColor = require('randomcolor');
 
   function normalize(val, max, min, scale) { return (scale * (val - min) / (max - min)); }
-  function revertNormalize(final, max, min, scale) { return ((final / scale)*(max - min) + min); }
+  function revertNormalize(final, max, min, scale) { return ((final / scale) * (max - min) + min); }
 
 
   $scope.$watchMulti(['esResponse'], function ([resp]) {
@@ -29,11 +29,11 @@ module.controller('KbnRadarVisController', function ($scope, $element, $timeout,
 
 
 
-    if($scope.radarchart){
+    if ($scope.radarchart) {
       $scope.radarchart.destroy()
     }
 
-    if(resp){
+    if (resp) {
       var id_firstfield = '0'
       var id_secondfield;
       var id_x = '1'
@@ -43,12 +43,14 @@ module.controller('KbnRadarVisController', function ($scope, $element, $timeout,
       //Names of the field that have been selected
       if ($scope.vis.aggs.bySchemaName['field']) {
         var firstFieldAggId = $scope.vis.aggs.bySchemaName['field'][0].id;
-        var fieldAggName = $scope.vis.aggs.bySchemaName['field'][0].params.field.displayName;
+        if ($scope.vis.aggs.bySchemaName['field'][0].params.field) {
+          var fieldAggName = $scope.vis.aggs.bySchemaName['field'][0].params.field.displayName;
+        }
       }
 
 
       // Retrieve the metrics aggregation configured
-      if($scope.vis.aggs.bySchemaName['vertex']){
+      if ($scope.vis.aggs.bySchemaName['vertex']) {
         var fields = []
         var titles = []
         var customLabels = []
@@ -66,7 +68,7 @@ module.controller('KbnRadarVisController', function ($scope, $element, $timeout,
           if (metric.params.customLabel) {
             customLabels.push(metric.params.customLabel)
           } else {
-            customLabels.push(metric.type.title + " " + fields[fields.length-1])
+            customLabels.push(metric.type.title + " " + fields[fields.length - 1])
           }
         }
       }
@@ -76,7 +78,7 @@ module.controller('KbnRadarVisController', function ($scope, $element, $timeout,
       for (let index = 0; index < resp.tables[0].rows.length; index++) {
         const bucket = resp.tables[0].rows[index];
         for (let index = 1; index < bucket.length; index++) {
-          if (!valuesMetrics[index]){
+          if (!valuesMetrics[index]) {
             valuesMetrics[index] = []
           }
           valuesMetrics[index].push(bucket[index]);
@@ -91,12 +93,12 @@ module.controller('KbnRadarVisController', function ($scope, $element, $timeout,
         var originWithoutNormalize = []
         var label = bucket[0]
         for (let index = 1; index < bucket.length; index++) {
-          if(normalizeData){
+          if (normalizeData) {
             var normMin = 1;
             var normMax = Math.max(...valuesMetrics[index]);
-            
-            if($scope.vis.params.rangesMetrics){
-              if ($scope.vis.params.rangesMetrics[index - 1].from){
+
+            if ($scope.vis.params.rangesMetrics) {
+              if ($scope.vis.params.rangesMetrics[index - 1].from) {
                 normMin = $scope.vis.params.rangesMetrics[index - 1].from;
               }
               if ($scope.vis.params.rangesMetrics[index - 1].to) {
@@ -104,15 +106,15 @@ module.controller('KbnRadarVisController', function ($scope, $element, $timeout,
               }
             }
             valuesBucket.push(normalize(bucket[index], normMax, normMin, vertexMaxScale))
-          }else{
+          } else {
             valuesBucket.push(bucket[index]);
           }
           originWithoutNormalize.push(bucket[index]);
         }
         var color = randomColor({
-            luminosity: 'light',
-            format: 'rgba',
-            alpha: 0.2
+          luminosity: 'light',
+          format: 'rgba',
+          alpha: 0.2
         });
         // Border color must have a complete alpha
         var borderColor = color.replace(/[^,]+(?=\))/, '1')
@@ -146,7 +148,7 @@ module.controller('KbnRadarVisController', function ($scope, $element, $timeout,
 
       // if the data is normalizated, It is neccesary to change the tooltip and scale
 
-      if(normalizeData){
+      if (normalizeData) {
         var options = {
           responsive: true,
           maintainAspectRadio: false,
@@ -167,7 +169,7 @@ module.controller('KbnRadarVisController', function ($scope, $element, $timeout,
                 for (let i = 0; i < data['datasets'].length; i++) {
                   const e = data['datasets'][i];
                   var v = e['dataOrig'][tooltipItem['index']];
-                  if(v == value){
+                  if (v == value) {
                     labelsWithSameValue.push(e.label)
                   }
                 }
@@ -176,13 +178,13 @@ module.controller('KbnRadarVisController', function ($scope, $element, $timeout,
                 var str = "";
                 for (let index = 0; index < labelsWithSameValue.length; index++) {
                   const element = labelsWithSameValue[index];
-                  if(index == labelsWithSameValue.length-1){
+                  if (index == labelsWithSameValue.length - 1) {
                     str += element;
                     continue
                   }
-                  str += element + ", " 
+                  str += element + ", "
                 }
-                return str + ": " + value ;
+                return str + ": " + value;
               },
               afterLabel: function (tooltipItem, data) {
                 var dataset = data['datasets'][tooltipItem['datasetIndex']];
@@ -198,7 +200,7 @@ module.controller('KbnRadarVisController', function ($scope, $element, $timeout,
             displayColors: false
           }
         };
-      }else{
+      } else {
         var options = {
           responsive: true,
           maintainAspectRadio: false,
@@ -218,7 +220,7 @@ module.controller('KbnRadarVisController', function ($scope, $element, $timeout,
                 for (let i = 0; i < data['datasets'].length; i++) {
                   const e = data['datasets'][i];
                   var v = e['data'][tooltipItem['index']];
-                  if(v == value){
+                  if (v == value) {
                     labelsWithSameValue.push(e.label)
                   }
                 }
@@ -227,13 +229,13 @@ module.controller('KbnRadarVisController', function ($scope, $element, $timeout,
                 var str = "";
                 for (let index = 0; index < labelsWithSameValue.length; index++) {
                   const element = labelsWithSameValue[index];
-                  if(index == labelsWithSameValue.length-1){
+                  if (index == labelsWithSameValue.length - 1) {
                     str += element;
                     continue
                   }
-                  str += element + ", " 
+                  str += element + ", "
                 }
-                return str + ": " + value ;
+                return str + ": " + value;
               }
             },
             backgroundColor: '#000',
@@ -247,7 +249,7 @@ module.controller('KbnRadarVisController', function ($scope, $element, $timeout,
       }
 
       var original = Chart.defaults.global.legend.onClick;
-      Chartjs.defaults.global.legend.onClick = function(e, legendItem) {
+      Chartjs.defaults.global.legend.onClick = function (e, legendItem) {
         console.log(e, legendItem);
         original.call(this, e, legendItem);
       };
