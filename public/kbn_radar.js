@@ -64,7 +64,7 @@ function RadarVisTypeProvider(Private) {
           title: 'Field',
           max: 1,
           min: 1,
-          aggFilter: ['terms']
+          aggFilter: ['terms', 'filters']
         }
       ])
     },
