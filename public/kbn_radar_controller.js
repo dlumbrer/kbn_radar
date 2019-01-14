@@ -48,24 +48,18 @@ module.controller('KbnRadarVisController', function ($scope, $element, $timeout,
 
       // Retrieve the metrics aggregation configured
       if($scope.vis.aggs.bySchemaName['vertex']){
-        var fields = []
         var titles = []
         var customLabels = []
         var quantityVertices = $scope.vis.aggs.bySchemaName['vertex'].length;
         for (let index = 0; index < $scope.vis.aggs.bySchemaName['vertex'].length; index++) {
           const metric = $scope.vis.aggs.bySchemaName['vertex'][index];
 
-          if (metric.type.name != "count") {
-            fields.push(metric.params.field.displayName)
-          } else {
-            fields.push("")
-          }
           titles.push(metric.type.title)
 
           if (metric.params.customLabel) {
             customLabels.push(metric.params.customLabel)
           } else {
-            customLabels.push(metric.type.title + " " + fields[fields.length-1])
+            customLabels.push(metric.type.title)
           }
         }
       }
