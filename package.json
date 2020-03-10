@@ -5,7 +5,7 @@
     "version": "kibana"
   },
   "authors": [
-  "David Moreno Lumbreras <dmorenolumb@gmail.com>"
+    "David Moreno Lumbreras <dmorenolumb@gmail.com>"
   ],
   "license": "Apache-2.0",
   "repository": {

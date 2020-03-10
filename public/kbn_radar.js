@@ -1,12 +1,7 @@
 import 'plugins/kbn_radar/kbn_radar.less';
-import 'plugins/kbn_radar/kbn_radar_controller';
 import 'plugins/kbn_radar/kbn_radar_params';
-import 'ui/agg_table';
-import 'ui/agg_table/agg_table_group';
-import 'ui/agg_table';
-import 'ui/agg_table/agg_table_group';
 
-import { CATEGORY } from 'ui/vis/vis_category';
+import { KbnRadarVisController } from './kbn_radar_controller';
 import { VisFactoryProvider } from 'ui/vis/vis_factory';
 import { Schemas } from 'ui/vis/editors/default/schemas';
 import RadarVisTemplate from 'plugins/kbn_radar/kbn_radar.html';
@@ -37,7 +32,6 @@ function RadarVisTypeProvider(Private) {
     title: 'Radar',
     image,
     description: 'Display values in a radar chart',
-    category: CATEGORY.BASIC,
     visConfig: {
       defaults: {
         normalize: false,

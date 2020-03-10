@@ -64,26 +64,32 @@ module.controller('KbnRadarVisController', function ($scope, $element, $timeout,
         }
       }
 
+      let metricIds = []
+      $scope.vis.aggs.bySchemaName['vertex'].forEach(e => {
+        metricIds.push(e.id)
+      });
+
       //Coger valores metricas
       var valuesMetrics = {}
-      for (let index = 0; index < resp.tables[0].rows.length; index++) {
-        const bucket = resp.tables[0].rows[index];
-        for (let index = 1; index < bucket.length; index++) {
-          if (!valuesMetrics[index]){
-            valuesMetrics[index] = []
+      for (let index = 0; index < resp.rows.length; index++) {
+        const bucket = resp.rows[index];
+        for (let i = 0; i < metricIds.length; i++){
+          if (!valuesMetrics[i+1]){
+            valuesMetrics[i+1] = []
           }
-          valuesMetrics[index].push(bucket[index]);
+          let k = i+1
+          valuesMetrics[i+1].push(bucket['col-' + k + '-' + metricIds[i]])
         }
       }
       ///////
 
       var dataParsed = [];
-      for (let index = 0; index < resp.tables[0].rows.length; index++) {
-        const bucket = resp.tables[0].rows[index];
+      for (let index = 0; index < resp.rows.length; index++) {
+        const bucket = resp.rows[index];
         var valuesBucket = []
         var originWithoutNormalize = []
-        var label = bucket[0]
-        for (let index = 1; index < bucket.length; index++) {
+        var label = bucket['col-0-' + $scope.vis.aggs.bySchemaName['field'][0].id]
+        for (let index = 1; index < Object.keys(bucket).length; index++) {
           if(normalizeData){
             var normMin = 1;
             var normMax = Math.max(...valuesMetrics[index]);
@@ -96,11 +102,11 @@ module.controller('KbnRadarVisController', function ($scope, $element, $timeout,
                 normMax = $scope.vis.params.rangesMetrics[index - 1].to;
               }
             }
-            valuesBucket.push(normalize(bucket[index], normMax, normMin, vertexMaxScale))
+            valuesBucket.push(normalize(bucket['col-' + index + '-' + metricIds[index-1]], normMax, normMin, vertexMaxScale))
           }else{
-            valuesBucket.push(bucket[index]);
+            valuesBucket.push(bucket['col-' + index + '-' + metricIds[index-1]]);
           }
-          originWithoutNormalize.push(bucket[index]);
+          originWithoutNormalize.push(bucket['col-' + index + '-' + metricIds[index-1]]);
         }
         var color = randomColor({
             luminosity: 'light',
