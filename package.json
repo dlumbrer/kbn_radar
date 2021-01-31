@@ -1,8 +1,9 @@
 {
   "name": "kbn_radar",
-  "version": "0.0.1",
+  "version": "7.10.0",
+  "description": "Radar plugin for visualizing spyder nets",
   "kibana": {
-    "version": "kibana"
+    "version": "7.10.0"
   },
   "authors": [
     "David Moreno Lumbreras <dmorenolumb@gmail.com>"
