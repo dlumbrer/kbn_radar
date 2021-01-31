@@ -20,22 +20,22 @@
 import { IModule } from 'angular';
 
 // @ts-ignore
-import { KbnNetworkVisController } from './kbn-network-vis-controller.js';
+import { KbnRadarVisController } from './kbn-radar-vis-controller.js';
 // @ts-ignore
-import { KbnNetworkAggTable } from './agg_table/agg_table';
+import { KbnRadarAggTable } from './agg_table/agg_table';
 // @ts-ignore
-import { KbnNetworkAggTableGroup } from './agg_table/agg_table_group';
+import { KbnRadarAggTableGroup } from './agg_table/agg_table_group';
 // @ts-ignore
-import { KbnNetworkRows } from './paginated_table/rows';
+import { KbnRadarRows } from './paginated_table/rows';
 // @ts-ignore
-import { NetworkPaginatedTable } from './paginated_table/paginated_table';
+import { RadarPaginatedTable } from './paginated_table/paginated_table';
 
 /** @internal */
 export const initTableVisLegacyModule = (angularIns: IModule): void => {
   angularIns
-    .controller('KbnNetworkVisController', KbnNetworkVisController)
-    .directive('kbnNetworkAggTable', KbnNetworkAggTable)
-    .directive('kbnNetworkAggTableGroup', KbnNetworkAggTableGroup)
-    .directive('kbnNetworkRows', KbnNetworkRows)
-    .directive('networkPaginatedTable', NetworkPaginatedTable);
+    .controller('KbnRadarVisController', KbnRadarVisController)
+    .directive('kbnRadarAggTable', KbnRadarAggTable)
+    .directive('kbnRadarAggTableGroup', KbnRadarAggTableGroup)
+    .directive('kbnRadarRows', KbnRadarRows)
+    .directive('radarPaginatedTable', RadarPaginatedTable);
 };

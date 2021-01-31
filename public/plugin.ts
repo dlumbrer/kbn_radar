@@ -19,7 +19,7 @@
 import { PluginInitializerContext, CoreSetup, CoreStart, Plugin } from '../../../src/core/public';
 import { VisualizationsSetup } from '../../../src/plugins/visualizations/public';
 
-import { kbnNetworkVisTypeDefinition } from './kbn-network-vis';
+import { kbnRadarVisTypeDefinition } from './kbn-radar-vis';
 
 import { DataPublicPluginStart } from '../../../src/plugins/data/public';
 import { setFormatService, setKibanaLegacy, setNotifications, setQueryService, setSearchService } from './services';
@@ -38,7 +38,7 @@ export interface TablePluginStartDependencies {
 }
 
 /** @internal */
-export class KbnNetworkPlugin implements Plugin<Promise<void>, void> {
+export class KbnRadarPlugin implements Plugin<Promise<void>, void> {
   initializerContext: PluginInitializerContext;
   createBaseVisualization: any;
 
@@ -51,7 +51,7 @@ export class KbnNetworkPlugin implements Plugin<Promise<void>, void> {
     { visualizations }: TablePluginSetupDependencies
   ) {
     visualizations.createBaseVisualization(
-      kbnNetworkVisTypeDefinition(core, this.initializerContext)
+      kbnRadarVisTypeDefinition(core, this.initializerContext)
     );
 
   }

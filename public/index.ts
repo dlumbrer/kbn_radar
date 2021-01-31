@@ -18,7 +18,7 @@
  */
 import './index.scss';
 import { PluginInitializerContext } from 'kibana/public';
-import { KbnNetworkPlugin as Plugin } from './plugin';
+import { KbnRadarPlugin as Plugin } from './plugin';
 
 export function plugin(initializerContext: PluginInitializerContext) {
   return new Plugin(initializerContext);

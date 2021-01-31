@@ -25,8 +25,8 @@ import Chartjs from 'chart.js'
 import AggConfigResult from './data_load/agg_config_result';
 import { getNotifications, getFormatService } from './services';
 
-// KbnNetworkVis AngularJS controller
-function KbnNetworkVisController($scope, config, $timeout) {
+// KbnRadarVis AngularJS controller
+function KbnRadarVisController($scope, config, $timeout) {
 
   function normalize(val, max, min, scale) { return (scale * (val - min) / (max - min)); }
   function revertNormalize(final, max, min, scale) { return ((final / scale) * (max - min) + min); }
@@ -34,8 +34,8 @@ function KbnNetworkVisController($scope, config, $timeout) {
 
   $scope.$watchMulti(['esResponse'], function ([resp]) {
     // options
-    const normalizeData = $scope.vis.params.normalize;
-    const vertexMaxScale = $scope.vis.params.vertexScale.to;
+    const normalizeData = $scope.visParams.normalize;
+    const vertexMaxScale = $scope.visParams.vertexScaleTo;
 
 
 
@@ -91,7 +91,10 @@ function KbnNetworkVisController($scope, config, $timeout) {
             valuesMetrics[i + 1] = []
           }
           let k = i + 1
-          valuesMetrics[i + 1].push(bucket['col-' + k + '-' + metricIds[i]])
+          //Pick metric if exist
+          if (bucket['col-' + k + '-' + metricIds[i]]) {
+            valuesMetrics[i + 1].push(bucket['col-' + k + '-' + metricIds[i]])
+          }
         }
       }
       ///////
@@ -103,17 +106,15 @@ function KbnNetworkVisController($scope, config, $timeout) {
         var originWithoutNormalize = []
         var label = bucket['col-0-' + resp.aggs.bySchemaName('field')[0].id]
         for (let index = 1; index < Object.keys(bucket).length; index++) {
-          if (normalizeData) {
+          if (normalizeData && valuesMetrics[index]) {
             var normMin = 1;
             var normMax = Math.max(...valuesMetrics[index]);
 
-            if ($scope.vis.params.rangesMetrics) {
-              if ($scope.vis.params.rangesMetrics[index - 1].from) {
-                normMin = $scope.vis.params.rangesMetrics[index - 1].from;
-              }
-              if ($scope.vis.params.rangesMetrics[index - 1].to) {
-                normMax = $scope.vis.params.rangesMetrics[index - 1].to;
-              }
+            if ($scope.visParams['rangesMetrics_' + (index - 1) + '_from']) {
+              normMin = $scope.visParams['rangesMetrics_' + (index - 1) + '_from'];
+            }
+            if ($scope.visParams['rangesMetrics_' + (index - 1) + '_to']) {
+              normMax = $scope.visParams['rangesMetrics_' + (index - 1) + '_to'];
             }
             // Just pick the metric if exist
             if (bucket['col-' + index + '-' + metricIds[index - 1]]) {
@@ -286,4 +287,4 @@ function KbnNetworkVisController($scope, config, $timeout) {
 
 }
 
-export { KbnNetworkVisController };
+export { KbnRadarVisController };

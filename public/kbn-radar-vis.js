@@ -21,41 +21,61 @@ import { i18n } from '@kbn/i18n';
 import { AggGroupNames } from '../../../src/plugins/data/public';
 import { Schemas } from '../../../src/plugins/vis_default_editor/public';
 
-import tableVisTemplate from './kbn-network-vis.html';
-import { getKbnNetworkVisualizationController } from './vis_controller';
-import { kbnNetworkRequestHandler } from './data_load/kbn-network-request-handler';
-import { kbnNetworkResponseHandler } from './data_load/kbn-network-response-handler';
-import { KbnNetworkOptions } from './components/kbn_network_vis_options_lazy';
+import tableVisTemplate from './kbn-radar-vis.html';
+import { getKbnRadarVisualizationController } from './vis_controller';
+import { kbnRadarRequestHandler } from './data_load/kbn-radar-request-handler';
+import { kbnRadarResponseHandler } from './data_load/kbn-radar-response-handler';
+import { KbnRadarOptions } from './components/kbn_radar_vis_options_lazy';
 import { VIS_EVENT_TO_TRIGGER } from '../../../src/plugins/visualizations/public';
 import './index.scss'
 import image from './images/icon-radar.svg';
 
 
 // define the visType object, which kibana will use to display and configure new Vis object of this type.
-export function kbnNetworkVisTypeDefinition(core, context) {
+export function kbnRadarVisTypeDefinition(core, context) {
   return {
     type: 'radar',
     name: 'kbn_radar',
-    title: i18n.translate('visTypeKbnNetwork.visTitle', {
+    title: i18n.translate('visTypeKbnRadar.visTitle', {
       defaultMessage: 'Radar'
     }),
     icon: image,
-    description: i18n.translate('visTypeKbnNetwork.visDescription', {
+    description: i18n.translate('visTypeKbnRadar.visDescription', {
       defaultMessage: 'Spyder nets with the radar visualization'
     }),
-    visualization: getKbnNetworkVisualizationController(core, context),
+    visualization: getKbnRadarVisualizationController(core, context),
     getSupportedTriggers: () => {
       return [VIS_EVENT_TO_TRIGGER.filter];
     },
     visConfig: {
       defaults: {
         normalize: false,
-        vertexScale: {from: 0, to: 5},
+        vertexScaleTo: 5,
+        rangesMetrics_0_from: 0,
+        rangesMetrics_0_to: 100,
+        rangesMetrics_1_from: 0,
+        rangesMetrics_1_to: 100,
+        rangesMetrics_2_from: 0,
+        rangesMetrics_2_to: 100,
+        rangesMetrics_3_from: 0,
+        rangesMetrics_3_to: 100,
+        rangesMetrics_4_from: 0,
+        rangesMetrics_4_to: 100,
+        rangesMetrics_5_from: 0,
+        rangesMetrics_5_to: 100,
+        rangesMetrics_6_from: 0,
+        rangesMetrics_6_to: 100,
+        rangesMetrics_7_from: 0,
+        rangesMetrics_7_to: 100,
+        rangesMetrics_8_from: 0,
+        rangesMetrics_8_to: 100,
+        rangesMetrics_9_from: 0,
+        rangesMetrics_9_to: 100,
       },
       template: tableVisTemplate
     },
     editorConfig: {
-      optionsTemplate: KbnNetworkOptions,
+      optionsTemplate: KbnRadarOptions,
       schemas: new Schemas([
         {
           group: AggGroupNames.Metrics,
@@ -68,6 +88,7 @@ export function kbnNetworkVisTypeDefinition(core, context) {
             }
           },
           min: 1,
+          max: 10,
           defaults: [{ type: 'count', schema: 'vertex' }]
         },
         {
@@ -81,8 +102,8 @@ export function kbnNetworkVisTypeDefinition(core, context) {
       ])
     },
     implementsRenderComplete: true,
-    requestHandler: kbnNetworkRequestHandler,
-    responseHandler: kbnNetworkResponseHandler,
+    requestHandler: kbnRadarRequestHandler,
+    responseHandler: kbnRadarResponseHandler,
     hierarchicalData: (vis) => {
       return true;
     }

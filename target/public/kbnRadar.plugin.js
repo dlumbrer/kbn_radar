@@ -19223,7 +19223,7 @@ module.exports = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<network-paginated-table\n  ng-if=\"rows.length\"\n  table=\"table\"\n  rows=\"rows\"\n  columns=\"formattedColumns\"\n  per-page=\"perPage\"\n  sort=\"sort\"\n  show-total=\"showTotal\"\n  filter=\"filter\"\n  totalFunc=\"totalFunc\">\n\n  <div class=\"kbnAggTable__controls\">\n    <small\n      i18n-id=\"visTypeTable.aggTable.exportLabel\"\n      i18n-default-message=\"Export:\"\n    ></small>&nbsp;&nbsp;\n    <a class=\"small\" ng-click=\"aggTable.exportAsCsv(false)\">\n      <span\n        i18n-id=\"visTypeTable.aggTable.rawLabel\"\n        i18n-default-message=\"Raw\"\n       ></span>\n       <i aria-hidden=\"true\" class=\"fa fa-download\"></i>\n    </a>&nbsp;&nbsp;&nbsp;\n    <a class=\"small\" ng-click=\"aggTable.exportAsCsv(true)\">\n      <span\n        i18n-id=\"visTypeTable.aggTable.formattedLabel\"\n        i18n-default-message=\"Formatted\"\n       ></span>\n       <i aria-hidden=\"true\" class=\"fa fa-download\"></i>\n    </a>\n    <paginate-controls></paginate-controls>\n  </div>\n</network-paginated-table>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<radar-paginated-table\n  ng-if=\"rows.length\"\n  table=\"table\"\n  rows=\"rows\"\n  columns=\"formattedColumns\"\n  per-page=\"perPage\"\n  sort=\"sort\"\n  show-total=\"showTotal\"\n  filter=\"filter\"\n  totalFunc=\"totalFunc\">\n\n  <div class=\"kbnAggTable__controls\">\n    <small\n      i18n-id=\"visTypeTable.aggTable.exportLabel\"\n      i18n-default-message=\"Export:\"\n    ></small>&nbsp;&nbsp;\n    <a class=\"small\" ng-click=\"aggTable.exportAsCsv(false)\">\n      <span\n        i18n-id=\"visTypeTable.aggTable.rawLabel\"\n        i18n-default-message=\"Raw\"\n       ></span>\n       <i aria-hidden=\"true\" class=\"fa fa-download\"></i>\n    </a>&nbsp;&nbsp;&nbsp;\n    <a class=\"small\" ng-click=\"aggTable.exportAsCsv(true)\">\n      <span\n        i18n-id=\"visTypeTable.aggTable.formattedLabel\"\n        i18n-default-message=\"Formatted\"\n       ></span>\n       <i aria-hidden=\"true\" class=\"fa fa-download\"></i>\n    </a>\n    <paginate-controls></paginate-controls>\n  </div>\n</radar-paginated-table>\n");
 
 /***/ }),
 
@@ -19231,12 +19231,12 @@ __webpack_require__.r(__webpack_exports__);
 /*!***************************************!*\
   !*** ./public/agg_table/agg_table.js ***!
   \***************************************/
-/*! exports provided: KbnNetworkAggTable */
+/*! exports provided: KbnRadarAggTable */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "KbnNetworkAggTable", function() { return KbnNetworkAggTable; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "KbnRadarAggTable", function() { return KbnRadarAggTable; });
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ "lodash");
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _src_plugins_share_public__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../src/plugins/share/public */ "plugin/share/public");
@@ -19267,7 +19267,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-function KbnNetworkAggTable(config, RecursionHelper) {
+function KbnRadarAggTable(config, RecursionHelper) {
   const fieldFormats = Object(_services__WEBPACK_IMPORTED_MODULE_3__["getFormatService"])();
   const numberFormatter = fieldFormats.getDefaultInstance('number').getConverterFor('text');
   return {
@@ -19457,7 +19457,7 @@ function KbnNetworkAggTable(config, RecursionHelper) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<table ng-if=\"rows\" class=\"table kbnAggTable__group\" ng-repeat=\"table in rows\">\n  <thead>\n    <tr>\n      <th ng-if=\"table.tables\" scope=\"col\">\n        <span class=\"kbnAggTable__groupHeader\">{{ table.title }}</span>\n      </th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>\n        <kbn-network-agg-table-group\n          ng-if=\"table.tables\"\n          group=\"table\"\n          filter=\"filter\"\n          per-page=\"perPage\"\n          sort=\"sort\"\n          show-total=\"showTotal\"\n          total-func=\"totalFunc\"></kbn-network-agg-table-group>\n        <kbn-network-agg-table\n          ng-if=\"table.rows\"\n          filter=\"filter\"\n          table=\"table\"\n          export-title=\"exportTitle\"\n          per-page=\"perPage\"\n          sort=\"sort\"\n          show-total=\"showTotal\"\n          total-func=\"totalFunc\">\n        </kbn-network-agg-table>\n      </td>\n    </tr>\n  </tbody>\n</table>\n\n<table ng-if=\"columns\" class=\"table kbnAggTable__group\">\n  <thead>\n    <tr>\n      <th ng-repeat=\"table in columns\" ng-if=\"table.tables\" scope=\"col\">\n        <span class=\"kbnAggTable__groupHeader\">{{ table.title }}</span>\n      </th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td ng-repeat=\"table in columns\">\n        <kbn-network-agg-table-group\n          ng-if=\"table.tables\"\n          filter=\"filter\"\n          group=\"table\"\n          per-page=\"perPage\"\n          sort=\"sort\"\n          show-total=\"showTotal\"\n          total-func=\"totalFunc\"></kbn-network-agg-table-group>\n        <kbn-network-agg-table\n          ng-if=\"table.rows\"\n          filter=\"filter\"\n          table=\"table\"\n          export-title=\"exportTitle\"\n          per-page=\"perPage\"\n          sort=\"sort\"\n          show-total=\"showTotal\"\n          total-func=\"totalFunc\">\n        </kbn-network-agg-table>\n      </td>\n    </tr>\n  </tbody>\n</table>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<table ng-if=\"rows\" class=\"table kbnAggTable__group\" ng-repeat=\"table in rows\">\n  <thead>\n    <tr>\n      <th ng-if=\"table.tables\" scope=\"col\">\n        <span class=\"kbnAggTable__groupHeader\">{{ table.title }}</span>\n      </th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>\n        <kbn-radar-agg-table-group\n          ng-if=\"table.tables\"\n          group=\"table\"\n          filter=\"filter\"\n          per-page=\"perPage\"\n          sort=\"sort\"\n          show-total=\"showTotal\"\n          total-func=\"totalFunc\"></kbn-radar-agg-table-group>\n        <kbn-radar-agg-table\n          ng-if=\"table.rows\"\n          filter=\"filter\"\n          table=\"table\"\n          export-title=\"exportTitle\"\n          per-page=\"perPage\"\n          sort=\"sort\"\n          show-total=\"showTotal\"\n          total-func=\"totalFunc\">\n        </kbn-radar-agg-table>\n      </td>\n    </tr>\n  </tbody>\n</table>\n\n<table ng-if=\"columns\" class=\"table kbnAggTable__group\">\n  <thead>\n    <tr>\n      <th ng-repeat=\"table in columns\" ng-if=\"table.tables\" scope=\"col\">\n        <span class=\"kbnAggTable__groupHeader\">{{ table.title }}</span>\n      </th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td ng-repeat=\"table in columns\">\n        <kbn-radar-agg-table-group\n          ng-if=\"table.tables\"\n          filter=\"filter\"\n          group=\"table\"\n          per-page=\"perPage\"\n          sort=\"sort\"\n          show-total=\"showTotal\"\n          total-func=\"totalFunc\"></kbn-radar-agg-table-group>\n        <kbn-radar-agg-table\n          ng-if=\"table.rows\"\n          filter=\"filter\"\n          table=\"table\"\n          export-title=\"exportTitle\"\n          per-page=\"perPage\"\n          sort=\"sort\"\n          show-total=\"showTotal\"\n          total-func=\"totalFunc\">\n        </kbn-radar-agg-table>\n      </td>\n    </tr>\n  </tbody>\n</table>\n");
 
 /***/ }),
 
@@ -19465,12 +19465,12 @@ __webpack_require__.r(__webpack_exports__);
 /*!*********************************************!*\
   !*** ./public/agg_table/agg_table_group.js ***!
   \*********************************************/
-/*! exports provided: KbnNetworkAggTableGroup */
+/*! exports provided: KbnRadarAggTableGroup */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "KbnNetworkAggTableGroup", function() { return KbnNetworkAggTableGroup; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "KbnRadarAggTableGroup", function() { return KbnRadarAggTableGroup; });
 /* harmony import */ var _agg_table_group_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./agg_table_group.html */ "./public/agg_table/agg_table_group.html");
 /*
  * Licensed to Elasticsearch B.V. under one or more contributor
@@ -19491,7 +19491,7 @@ __webpack_require__.r(__webpack_exports__);
  * under the License.
  */
 
-function KbnNetworkAggTableGroup(RecursionHelper) {
+function KbnRadarAggTableGroup(RecursionHelper) {
   return {
     restrict: 'E',
     template: _agg_table_group_html__WEBPACK_IMPORTED_MODULE_0__["default"],
@@ -19527,16 +19527,16 @@ function KbnNetworkAggTableGroup(RecursionHelper) {
 
 /***/ }),
 
-/***/ "./public/components/kbn_network_vis_options_lazy.tsx":
-/*!************************************************************!*\
-  !*** ./public/components/kbn_network_vis_options_lazy.tsx ***!
-  \************************************************************/
-/*! exports provided: KbnNetworkOptions */
+/***/ "./public/components/kbn_radar_vis_options_lazy.tsx":
+/*!**********************************************************!*\
+  !*** ./public/components/kbn_radar_vis_options_lazy.tsx ***!
+  \**********************************************************/
+/*! exports provided: KbnRadarOptions */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "KbnNetworkOptions", function() { return KbnNetworkOptions; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "KbnRadarOptions", function() { return KbnRadarOptions; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _elastic_eui__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @elastic/eui */ "@elastic/eui");
@@ -19561,10 +19561,10 @@ __webpack_require__.r(__webpack_exports__);
  */
 
 
-const KbnNetworkOptionsComponent = /*#__PURE__*/Object(react__WEBPACK_IMPORTED_MODULE_0__["lazy"])(() => __webpack_require__.e(/*! import() */ 0).then(__webpack_require__.bind(null, /*! ./kbn_network_vis_options */ "./public/components/kbn_network_vis_options.tsx")));
-const KbnNetworkOptions = props => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0__["Suspense"], {
+const KbnRadarOptionsComponent = /*#__PURE__*/Object(react__WEBPACK_IMPORTED_MODULE_0__["lazy"])(() => __webpack_require__.e(/*! import() */ 0).then(__webpack_require__.bind(null, /*! ./kbn_radar_vis_options */ "./public/components/kbn_radar_vis_options.tsx")));
+const KbnRadarOptions = props => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0__["Suspense"], {
   fallback: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_elastic_eui__WEBPACK_IMPORTED_MODULE_1__["EuiLoadingSpinner"], null)
-}, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(KbnNetworkOptionsComponent, props));
+}, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(KbnRadarOptionsComponent, props));
 
 /***/ }),
 
@@ -19659,16 +19659,16 @@ AggConfigResult.prototype.valueOf = function () {
 
 /***/ }),
 
-/***/ "./public/data_load/kbn-network-request-handler.js":
-/*!*********************************************************!*\
-  !*** ./public/data_load/kbn-network-request-handler.js ***!
-  \*********************************************************/
-/*! exports provided: kbnNetworkRequestHandler */
+/***/ "./public/data_load/kbn-radar-request-handler.js":
+/*!*******************************************************!*\
+  !*** ./public/data_load/kbn-radar-request-handler.js ***!
+  \*******************************************************/
+/*! exports provided: kbnRadarRequestHandler */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "kbnNetworkRequestHandler", function() { return kbnNetworkRequestHandler; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "kbnRadarRequestHandler", function() { return kbnRadarRequestHandler; });
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ "lodash");
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _src_plugins_inspector_public__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../src/plugins/inspector/public */ "plugin/inspector/public");
@@ -19699,7 +19699,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-async function kbnNetworkRequestHandler({
+async function kbnRadarRequestHandler({
   partialRows,
   metricsAtAllLevels,
   visParams,
@@ -19797,16 +19797,16 @@ async function kbnNetworkRequestHandler({
 
 /***/ }),
 
-/***/ "./public/data_load/kbn-network-response-handler.js":
-/*!**********************************************************!*\
-  !*** ./public/data_load/kbn-network-response-handler.js ***!
-  \**********************************************************/
-/*! exports provided: kbnNetworkResponseHandler */
+/***/ "./public/data_load/kbn-radar-response-handler.js":
+/*!********************************************************!*\
+  !*** ./public/data_load/kbn-radar-response-handler.js ***!
+  \********************************************************/
+/*! exports provided: kbnRadarResponseHandler */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "kbnNetworkResponseHandler", function() { return kbnNetworkResponseHandler; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "kbnRadarResponseHandler", function() { return kbnRadarResponseHandler; });
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ "lodash");
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _agg_config_result__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./agg_config_result */ "./public/data_load/agg_config_result.js");
@@ -19922,7 +19922,7 @@ function splitTable(columns, rows, $parent) {
   });
 }
 
-function kbnNetworkResponseHandler(response) {
+function kbnRadarResponseHandler(response) {
   return {
     tables: splitTable(response.columns, response.rows, null),
     totalHits: response.totalHits,
@@ -20390,7 +20390,7 @@ function getAngularModule(name, core, context) {
   return uiModule;
 }
 let initialized = false;
-function getInnerAngular(name = 'kibana/kbn_network_vis', core) {
+function getInnerAngular(name = 'kibana/kbn_radar_vis', core) {
   if (!initialized) {
     createLocalPrivateModule();
     createLocalI18nModule();
@@ -20565,21 +20565,21 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function plugin(initializerContext) {
-  return new _plugin__WEBPACK_IMPORTED_MODULE_1__["KbnNetworkPlugin"](initializerContext);
+  return new _plugin__WEBPACK_IMPORTED_MODULE_1__["KbnRadarPlugin"](initializerContext);
 }
 
 /***/ }),
 
-/***/ "./public/kbn-network-vis-controller.js":
-/*!**********************************************!*\
-  !*** ./public/kbn-network-vis-controller.js ***!
-  \**********************************************/
-/*! exports provided: KbnNetworkVisController */
+/***/ "./public/kbn-radar-vis-controller.js":
+/*!********************************************!*\
+  !*** ./public/kbn-radar-vis-controller.js ***!
+  \********************************************/
+/*! exports provided: KbnRadarVisController */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "KbnNetworkVisController", function() { return KbnNetworkVisController; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "KbnRadarVisController", function() { return KbnRadarVisController; });
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ "lodash");
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var randomcolor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! randomcolor */ "./node_modules/randomcolor/randomColor.js");
@@ -20610,9 +20610,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
- // KbnNetworkVis AngularJS controller
+ // KbnRadarVis AngularJS controller
 
-function KbnNetworkVisController($scope, config, $timeout) {
+function KbnRadarVisController($scope, config, $timeout) {
   function normalize(val, max, min, scale) {
     return scale * (val - min) / (max - min);
   }
@@ -20623,8 +20623,8 @@ function KbnNetworkVisController($scope, config, $timeout) {
 
   $scope.$watchMulti(['esResponse'], function ([resp]) {
     // options
-    const normalizeData = $scope.vis.params.normalize;
-    const vertexMaxScale = $scope.vis.params.vertexScale.to;
+    const normalizeData = $scope.visParams.normalize;
+    const vertexMaxScale = $scope.visParams.vertexScaleTo;
 
     if ($scope.radarchart) {
       $scope.radarchart.destroy();
@@ -20679,8 +20679,11 @@ function KbnNetworkVisController($scope, config, $timeout) {
             valuesMetrics[i + 1] = [];
           }
 
-          let k = i + 1;
-          valuesMetrics[i + 1].push(bucket['col-' + k + '-' + metricIds[i]]);
+          let k = i + 1; //Pick metric if exist
+
+          if (bucket['col-' + k + '-' + metricIds[i]]) {
+            valuesMetrics[i + 1].push(bucket['col-' + k + '-' + metricIds[i]]);
+          }
         }
       } ///////
 
@@ -20694,18 +20697,16 @@ function KbnNetworkVisController($scope, config, $timeout) {
         var label = bucket['col-0-' + resp.aggs.bySchemaName('field')[0].id];
 
         for (let index = 1; index < Object.keys(bucket).length; index++) {
-          if (normalizeData) {
+          if (normalizeData && valuesMetrics[index]) {
             var normMin = 1;
             var normMax = Math.max(...valuesMetrics[index]);
 
-            if ($scope.vis.params.rangesMetrics) {
-              if ($scope.vis.params.rangesMetrics[index - 1].from) {
-                normMin = $scope.vis.params.rangesMetrics[index - 1].from;
-              }
+            if ($scope.visParams['rangesMetrics_' + (index - 1) + '_from']) {
+              normMin = $scope.visParams['rangesMetrics_' + (index - 1) + '_from'];
+            }
 
-              if ($scope.vis.params.rangesMetrics[index - 1].to) {
-                normMax = $scope.vis.params.rangesMetrics[index - 1].to;
-              }
+            if ($scope.visParams['rangesMetrics_' + (index - 1) + '_to']) {
+              normMax = $scope.visParams['rangesMetrics_' + (index - 1) + '_to'];
             } // Just pick the metric if exist
 
 
@@ -20892,40 +20893,40 @@ function KbnNetworkVisController($scope, config, $timeout) {
 
 /***/ }),
 
-/***/ "./public/kbn-network-vis.html":
-/*!*************************************!*\
-  !*** ./public/kbn-network-vis.html ***!
-  \*************************************/
+/***/ "./public/kbn-radar-vis.html":
+/*!***********************************!*\
+  !*** ./public/kbn-radar-vis.html ***!
+  \***********************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div ng-controller=\"KbnNetworkVisController\" class=\"container kbn-radar\" id=\"radar-chart_{{$id}}\">\n  <canvas id=\"radar_chart_{{$id}}\" height=\"100%\" width=\"100%\"></canvas>\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<div ng-controller=\"KbnRadarVisController\" class=\"container kbn-radar\" id=\"radar-chart_{{$id}}\">\n  <canvas id=\"radar_chart_{{$id}}\" height=\"100%\" width=\"100%\"></canvas>\n</div>");
 
 /***/ }),
 
-/***/ "./public/kbn-network-vis.js":
-/*!***********************************!*\
-  !*** ./public/kbn-network-vis.js ***!
-  \***********************************/
-/*! exports provided: kbnNetworkVisTypeDefinition */
+/***/ "./public/kbn-radar-vis.js":
+/*!*********************************!*\
+  !*** ./public/kbn-radar-vis.js ***!
+  \*********************************/
+/*! exports provided: kbnRadarVisTypeDefinition */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "kbnNetworkVisTypeDefinition", function() { return kbnNetworkVisTypeDefinition; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "kbnRadarVisTypeDefinition", function() { return kbnRadarVisTypeDefinition; });
 /* harmony import */ var _kbn_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @kbn/i18n */ "@kbn/i18n");
 /* harmony import */ var _kbn_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_kbn_i18n__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _src_plugins_data_public__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../src/plugins/data/public */ "plugin/data/public");
 /* harmony import */ var _src_plugins_data_public__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_src_plugins_data_public__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _src_plugins_vis_default_editor_public__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../src/plugins/vis_default_editor/public */ "plugin/visDefaultEditor/public");
 /* harmony import */ var _src_plugins_vis_default_editor_public__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_src_plugins_vis_default_editor_public__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _kbn_network_vis_html__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./kbn-network-vis.html */ "./public/kbn-network-vis.html");
+/* harmony import */ var _kbn_radar_vis_html__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./kbn-radar-vis.html */ "./public/kbn-radar-vis.html");
 /* harmony import */ var _vis_controller__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./vis_controller */ "./public/vis_controller.ts");
-/* harmony import */ var _data_load_kbn_network_request_handler__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./data_load/kbn-network-request-handler */ "./public/data_load/kbn-network-request-handler.js");
-/* harmony import */ var _data_load_kbn_network_response_handler__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./data_load/kbn-network-response-handler */ "./public/data_load/kbn-network-response-handler.js");
-/* harmony import */ var _components_kbn_network_vis_options_lazy__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/kbn_network_vis_options_lazy */ "./public/components/kbn_network_vis_options_lazy.tsx");
+/* harmony import */ var _data_load_kbn_radar_request_handler__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./data_load/kbn-radar-request-handler */ "./public/data_load/kbn-radar-request-handler.js");
+/* harmony import */ var _data_load_kbn_radar_response_handler__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./data_load/kbn-radar-response-handler */ "./public/data_load/kbn-radar-response-handler.js");
+/* harmony import */ var _components_kbn_radar_vis_options_lazy__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/kbn_radar_vis_options_lazy */ "./public/components/kbn_radar_vis_options_lazy.tsx");
 /* harmony import */ var _src_plugins_visualizations_public__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../src/plugins/visualizations/public */ "plugin/visualizations/public");
 /* harmony import */ var _src_plugins_visualizations_public__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_src_plugins_visualizations_public__WEBPACK_IMPORTED_MODULE_8__);
 /* harmony import */ var _index_scss__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./index.scss */ "./public/index.scss");
@@ -20962,33 +20963,50 @@ __webpack_require__.r(__webpack_exports__);
 
  // define the visType object, which kibana will use to display and configure new Vis object of this type.
 
-function kbnNetworkVisTypeDefinition(core, context) {
+function kbnRadarVisTypeDefinition(core, context) {
   return {
     type: 'radar',
     name: 'kbn_radar',
-    title: _kbn_i18n__WEBPACK_IMPORTED_MODULE_0__["i18n"].translate('visTypeKbnNetwork.visTitle', {
+    title: _kbn_i18n__WEBPACK_IMPORTED_MODULE_0__["i18n"].translate('visTypeKbnRadar.visTitle', {
       defaultMessage: 'Radar'
     }),
     icon: _images_icon_radar_svg__WEBPACK_IMPORTED_MODULE_10___default.a,
-    description: _kbn_i18n__WEBPACK_IMPORTED_MODULE_0__["i18n"].translate('visTypeKbnNetwork.visDescription', {
+    description: _kbn_i18n__WEBPACK_IMPORTED_MODULE_0__["i18n"].translate('visTypeKbnRadar.visDescription', {
       defaultMessage: 'Spyder nets with the radar visualization'
     }),
-    visualization: Object(_vis_controller__WEBPACK_IMPORTED_MODULE_4__["getKbnNetworkVisualizationController"])(core, context),
+    visualization: Object(_vis_controller__WEBPACK_IMPORTED_MODULE_4__["getKbnRadarVisualizationController"])(core, context),
     getSupportedTriggers: () => {
       return [_src_plugins_visualizations_public__WEBPACK_IMPORTED_MODULE_8__["VIS_EVENT_TO_TRIGGER"].filter];
     },
     visConfig: {
       defaults: {
         normalize: false,
-        vertexScale: {
-          from: 0,
-          to: 5
-        }
+        vertexScaleTo: 5,
+        rangesMetrics_0_from: 0,
+        rangesMetrics_0_to: 100,
+        rangesMetrics_1_from: 0,
+        rangesMetrics_1_to: 100,
+        rangesMetrics_2_from: 0,
+        rangesMetrics_2_to: 100,
+        rangesMetrics_3_from: 0,
+        rangesMetrics_3_to: 100,
+        rangesMetrics_4_from: 0,
+        rangesMetrics_4_to: 100,
+        rangesMetrics_5_from: 0,
+        rangesMetrics_5_to: 100,
+        rangesMetrics_6_from: 0,
+        rangesMetrics_6_to: 100,
+        rangesMetrics_7_from: 0,
+        rangesMetrics_7_to: 100,
+        rangesMetrics_8_from: 0,
+        rangesMetrics_8_to: 100,
+        rangesMetrics_9_from: 0,
+        rangesMetrics_9_to: 100
       },
-      template: _kbn_network_vis_html__WEBPACK_IMPORTED_MODULE_3__["default"]
+      template: _kbn_radar_vis_html__WEBPACK_IMPORTED_MODULE_3__["default"]
     },
     editorConfig: {
-      optionsTemplate: _components_kbn_network_vis_options_lazy__WEBPACK_IMPORTED_MODULE_7__["KbnNetworkOptions"],
+      optionsTemplate: _components_kbn_radar_vis_options_lazy__WEBPACK_IMPORTED_MODULE_7__["KbnRadarOptions"],
       schemas: new _src_plugins_vis_default_editor_public__WEBPACK_IMPORTED_MODULE_2__["Schemas"]([{
         group: _src_plugins_data_public__WEBPACK_IMPORTED_MODULE_1__["AggGroupNames"].Metrics,
         name: 'vertex',
@@ -21000,6 +21018,7 @@ function kbnNetworkVisTypeDefinition(core, context) {
           }
         },
         min: 1,
+        max: 10,
         defaults: [{
           type: 'count',
           schema: 'vertex'
@@ -21014,8 +21033,8 @@ function kbnNetworkVisTypeDefinition(core, context) {
       }])
     },
     implementsRenderComplete: true,
-    requestHandler: _data_load_kbn_network_request_handler__WEBPACK_IMPORTED_MODULE_5__["kbnNetworkRequestHandler"],
-    responseHandler: _data_load_kbn_network_response_handler__WEBPACK_IMPORTED_MODULE_6__["kbnNetworkResponseHandler"],
+    requestHandler: _data_load_kbn_radar_request_handler__WEBPACK_IMPORTED_MODULE_5__["kbnRadarRequestHandler"],
+    responseHandler: _data_load_kbn_radar_response_handler__WEBPACK_IMPORTED_MODULE_6__["kbnRadarResponseHandler"],
     hierarchicalData: vis => {
       return true;
     }
@@ -21033,7 +21052,7 @@ function kbnNetworkVisTypeDefinition(core, context) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<paginate\n  ng-if=\"sortedRows.length\"\n  list=\"sortedRows\"\n  per-page-prop=\"perPage\"\n  class=\"kbnAggTable\">\n  <div class=\"kbnAggTable__paginated\">\n    <table class=\"table table-condensed\">\n      <thead data-test-subj=\"network-paginated-table-header\">\n        <tr>\n          <th\n            scope=\"col\"\n            ng-repeat=\"col in columns\"\n            ng-click=\"networkPaginatedTable.sortColumn($index)\"\n            kbn-accessible-click\n            tabindex=\"0\"\n            class=\"{{ col.class }} {{ col.titleAlignmentClass }}\">\n            <span ng-bind=\"::col.title\"></span>\n\n            <icon-tip\n              ng-if=\"col.info\"\n              content=\"'{{ col.info }}'\"\n            ></icon-tip>\n\n            <i\n              ng-if=\"col.sortable !== false\"\n              class=\"fa\"\n              ng-class=\"{\n                'fa-sort-asc': networkPaginatedTable.sort.columnIndex === $index && networkPaginatedTable.sort.direction === 'asc',\n                'fa-sort-desc': networkPaginatedTable.sort.columnIndex === $index && networkPaginatedTable.sort.direction === 'desc',\n                'fa-sort': networkPaginatedTable.sort.columnIndex !== $index || networkPaginatedTable.sort.direction === null\n              }\">\n            </i>\n          </th>\n        </tr>\n      </thead>\n      <tbody\n        data-test-subj=\"network-paginated-table-body\"\n        kbn-network-rows=\"page\"\n        kbn-network-rows-min=\"networkPaginatedTable.rowsToShow(perPage, page.length)\"\n      >\n      </tbody>\n      <tfoot ng-if=\"showTotal\">\n        <tr>\n          <th scope=\"col\" ng-repeat=\"col in columns\" class=\"numeric-value {{ col.totalAlignmentClass }}\">{{col.total}}</th>\n        </tr>\n      </tfoot>\n    </table>\n  </div>\n\n  <!-- auto-inserted by the paginate directive... -->\n  <!-- <paginate-controls></paginate-controls> -->\n  <div class=\"pagination-container\" ng-transclude></div>\n</paginate>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<paginate\n  ng-if=\"sortedRows.length\"\n  list=\"sortedRows\"\n  per-page-prop=\"perPage\"\n  class=\"kbnAggTable\">\n  <div class=\"kbnAggTable__paginated\">\n    <table class=\"table table-condensed\">\n      <thead data-test-subj=\"radar-paginated-table-header\">\n        <tr>\n          <th\n            scope=\"col\"\n            ng-repeat=\"col in columns\"\n            ng-click=\"radarPaginatedTable.sortColumn($index)\"\n            kbn-accessible-click\n            tabindex=\"0\"\n            class=\"{{ col.class }} {{ col.titleAlignmentClass }}\">\n            <span ng-bind=\"::col.title\"></span>\n\n            <icon-tip\n              ng-if=\"col.info\"\n              content=\"'{{ col.info }}'\"\n            ></icon-tip>\n\n            <i\n              ng-if=\"col.sortable !== false\"\n              class=\"fa\"\n              ng-class=\"{\n                'fa-sort-asc': radarPaginatedTable.sort.columnIndex === $index && radarPaginatedTable.sort.direction === 'asc',\n                'fa-sort-desc': radarPaginatedTable.sort.columnIndex === $index && radarPaginatedTable.sort.direction === 'desc',\n                'fa-sort': radarPaginatedTable.sort.columnIndex !== $index || radarPaginatedTable.sort.direction === null\n              }\">\n            </i>\n          </th>\n        </tr>\n      </thead>\n      <tbody\n        data-test-subj=\"radar-paginated-table-body\"\n        kbn-radar-rows=\"page\"\n        kbn-radar-rows-min=\"radarPaginatedTable.rowsToShow(perPage, page.length)\"\n      >\n      </tbody>\n      <tfoot ng-if=\"showTotal\">\n        <tr>\n          <th scope=\"col\" ng-repeat=\"col in columns\" class=\"numeric-value {{ col.totalAlignmentClass }}\">{{col.total}}</th>\n        </tr>\n      </tfoot>\n    </table>\n  </div>\n\n  <!-- auto-inserted by the paginate directive... -->\n  <!-- <paginate-controls></paginate-controls> -->\n  <div class=\"pagination-container\" ng-transclude></div>\n</paginate>\n");
 
 /***/ }),
 
@@ -21041,12 +21060,12 @@ __webpack_require__.r(__webpack_exports__);
 /*!***************************************************!*\
   !*** ./public/paginated_table/paginated_table.js ***!
   \***************************************************/
-/*! exports provided: NetworkPaginatedTable */
+/*! exports provided: RadarPaginatedTable */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NetworkPaginatedTable", function() { return NetworkPaginatedTable; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RadarPaginatedTable", function() { return RadarPaginatedTable; });
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ "lodash");
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _data_load_agg_config_result__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../data_load/agg_config_result */ "./public/data_load/agg_config_result.js");
@@ -21072,7 +21091,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-function NetworkPaginatedTable($filter) {
+function RadarPaginatedTable($filter) {
   const orderBy = $filter('orderBy');
   return {
     restrict: 'E',
@@ -21092,7 +21111,7 @@ function NetworkPaginatedTable($filter) {
       totalFunc: '=',
       filter: '='
     },
-    controllerAs: 'networkPaginatedTable',
+    controllerAs: 'radarPaginatedTable',
     controller: function ($scope) {
       const self = this;
       self.sort = {
@@ -21165,7 +21184,7 @@ function NetworkPaginatedTable($filter) {
       } // update the sortedRows result
 
 
-      $scope.$watchMulti(['rows', 'columns', '[]sort', '[]networkPaginatedTable.sort'], resortRows);
+      $scope.$watchMulti(['rows', 'columns', '[]sort', '[]radarPaginatedTable.sort'], resortRows);
     }
   };
 }
@@ -21176,12 +21195,12 @@ function NetworkPaginatedTable($filter) {
 /*!****************************************!*\
   !*** ./public/paginated_table/rows.js ***!
   \****************************************/
-/*! exports provided: KbnNetworkRows */
+/*! exports provided: KbnRadarRows */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "KbnNetworkRows", function() { return KbnNetworkRows; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "KbnRadarRows", function() { return KbnRadarRows; });
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "jquery");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! lodash */ "lodash");
@@ -21210,7 +21229,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-function KbnNetworkRows($compile) {
+function KbnRadarRows($compile) {
   return {
     restrict: 'A',
     link: function ($scope, $el, attr) {
@@ -21221,7 +21240,7 @@ function KbnNetworkRows($compile) {
 
         function createFilterableCell(aggConfigResult) {
           const $template = jquery__WEBPACK_IMPORTED_MODULE_0___default()(_table_cell_filter_html__WEBPACK_IMPORTED_MODULE_3__["default"]);
-          $template.addClass('kbnKbnNetworkCellFilter__hover');
+          $template.addClass('kbnKbnRadarCellFilter__hover');
           const scope = $scope.$new();
 
           scope.onFilterClick = (event, negate) => {
@@ -21308,7 +21327,7 @@ function KbnNetworkRows($compile) {
         return Math.max(max, row.length);
       }
 
-      $scope.$watchMulti([attr.kbnNetworkRows, attr.kbnNetworkRowsMin], function (vals) {
+      $scope.$watchMulti([attr.kbnRadarRows, attr.kbnRadarRowsMin], function (vals) {
         let rows = vals[0];
         const min = vals[1];
         $el.empty();
@@ -21362,13 +21381,13 @@ __webpack_require__.r(__webpack_exports__);
 /*!**************************!*\
   !*** ./public/plugin.ts ***!
   \**************************/
-/*! exports provided: KbnNetworkPlugin */
+/*! exports provided: KbnRadarPlugin */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "KbnNetworkPlugin", function() { return KbnNetworkPlugin; });
-/* harmony import */ var _kbn_network_vis__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./kbn-network-vis */ "./public/kbn-network-vis.js");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "KbnRadarPlugin", function() { return KbnRadarPlugin; });
+/* harmony import */ var _kbn_radar_vis__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./kbn-radar-vis */ "./public/kbn-radar-vis.js");
 /* harmony import */ var _services__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./services */ "./public/services.ts");
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
@@ -21394,7 +21413,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 /** @internal */
-class KbnNetworkPlugin {
+class KbnRadarPlugin {
   constructor(initializerContext) {
     _defineProperty(this, "initializerContext", void 0);
 
@@ -21406,7 +21425,7 @@ class KbnNetworkPlugin {
   async setup(core, {
     visualizations
   }) {
-    visualizations.createBaseVisualization(Object(_kbn_network_vis__WEBPACK_IMPORTED_MODULE_0__["kbnNetworkVisTypeDefinition"])(core, this.initializerContext));
+    visualizations.createBaseVisualization(Object(_kbn_radar_vis__WEBPACK_IMPORTED_MODULE_0__["kbnRadarVisTypeDefinition"])(core, this.initializerContext));
   }
 
   start(core, {
@@ -21482,7 +21501,7 @@ const [getSearchService, setSearchService] = Object(_src_plugins_kibana_utils_pu
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "initTableVisLegacyModule", function() { return initTableVisLegacyModule; });
-/* harmony import */ var _kbn_network_vis_controller_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./kbn-network-vis-controller.js */ "./public/kbn-network-vis-controller.js");
+/* harmony import */ var _kbn_radar_vis_controller_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./kbn-radar-vis-controller.js */ "./public/kbn-radar-vis-controller.js");
 /* harmony import */ var _agg_table_agg_table__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./agg_table/agg_table */ "./public/agg_table/agg_table.js");
 /* harmony import */ var _agg_table_agg_table_group__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./agg_table/agg_table_group */ "./public/agg_table/agg_table_group.js");
 /* harmony import */ var _paginated_table_rows__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./paginated_table/rows */ "./public/paginated_table/rows.js");
@@ -21518,7 +21537,7 @@ __webpack_require__.r(__webpack_exports__);
 /** @internal */
 
 const initTableVisLegacyModule = angularIns => {
-  angularIns.controller('KbnNetworkVisController', _kbn_network_vis_controller_js__WEBPACK_IMPORTED_MODULE_0__["KbnNetworkVisController"]).directive('kbnNetworkAggTable', _agg_table_agg_table__WEBPACK_IMPORTED_MODULE_1__["KbnNetworkAggTable"]).directive('kbnNetworkAggTableGroup', _agg_table_agg_table_group__WEBPACK_IMPORTED_MODULE_2__["KbnNetworkAggTableGroup"]).directive('kbnNetworkRows', _paginated_table_rows__WEBPACK_IMPORTED_MODULE_3__["KbnNetworkRows"]).directive('networkPaginatedTable', _paginated_table_paginated_table__WEBPACK_IMPORTED_MODULE_4__["NetworkPaginatedTable"]);
+  angularIns.controller('KbnRadarVisController', _kbn_radar_vis_controller_js__WEBPACK_IMPORTED_MODULE_0__["KbnRadarVisController"]).directive('kbnRadarAggTable', _agg_table_agg_table__WEBPACK_IMPORTED_MODULE_1__["KbnRadarAggTable"]).directive('kbnRadarAggTableGroup', _agg_table_agg_table_group__WEBPACK_IMPORTED_MODULE_2__["KbnRadarAggTableGroup"]).directive('kbnRadarRows', _paginated_table_rows__WEBPACK_IMPORTED_MODULE_3__["KbnRadarRows"]).directive('radarPaginatedTable', _paginated_table_paginated_table__WEBPACK_IMPORTED_MODULE_4__["RadarPaginatedTable"]);
 };
 
 /***/ }),
@@ -21527,12 +21546,12 @@ const initTableVisLegacyModule = angularIns => {
 /*!**********************************!*\
   !*** ./public/vis_controller.ts ***!
   \**********************************/
-/*! exports provided: getKbnNetworkVisualizationController */
+/*! exports provided: getKbnRadarVisualizationController */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getKbnNetworkVisualizationController", function() { return getKbnNetworkVisualizationController; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getKbnRadarVisualizationController", function() { return getKbnRadarVisualizationController; });
 /* harmony import */ var angular__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! angular */ "angular");
 /* harmony import */ var angular__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(angular__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! jquery */ "jquery");
@@ -21565,11 +21584,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
-const innerAngularName = 'kibana/kbn_network_vis';
-function getKbnNetworkVisualizationController(core, context) {
+const innerAngularName = 'kibana/kbn_radar_vis';
+function getKbnRadarVisualizationController(core, context) {
   var _temp;
 
-  return _temp = class KbnNetworkVisualizationController {
+  return _temp = class KbnRadarVisualizationController {
     constructor(domeElement, vis) {
       _defineProperty(this, "tableVisModule", void 0);
 

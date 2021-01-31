@@ -25,13 +25,13 @@ import { getAngularModule } from './get_inner_angular';
 import { getKibanaLegacy } from './services';
 import { initTableVisLegacyModule } from './table_vis_legacy_module';
 
-const innerAngularName = 'kibana/kbn_network_vis';
+const innerAngularName = 'kibana/kbn_radar_vis';
 
-export function getKbnNetworkVisualizationController(
+export function getKbnRadarVisualizationController(
   core: CoreSetup,
   context: PluginInitializerContext
 ) {
-  return class KbnNetworkVisualizationController {
+  return class KbnRadarVisualizationController {
     private tableVisModule: IModule | undefined;
     private injector: auto.IInjectorService | undefined;
     el: JQuery<Element>;

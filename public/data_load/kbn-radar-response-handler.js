@@ -103,6 +103,6 @@ function splitTable(columns, rows, $parent) {
   });
 }
 
-export function kbnNetworkResponseHandler(response) {
+export function kbnRadarResponseHandler(response) {
   return { tables: splitTable(response.columns, response.rows, null), totalHits: response.totalHits, aggs: response.aggs, newResponse: true };
 }

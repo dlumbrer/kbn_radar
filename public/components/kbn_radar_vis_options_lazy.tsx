@@ -19,12 +19,12 @@
 import React, { lazy, Suspense } from 'react';
 import { EuiLoadingSpinner } from '@elastic/eui';
 import { VisOptionsProps } from '../../../../src/plugins/vis_default_editor/public';
-import { KbnNetworkVisParams } from './kbn_network_vis_options';
+import { KbnRadarVisParams } from './kbn_radar_vis_options';
 
-const KbnNetworkOptionsComponent = lazy(() => import('./kbn_network_vis_options'));
+const KbnRadarOptionsComponent = lazy(() => import('./kbn_radar_vis_options'));
 
-export const KbnNetworkOptions = (props: VisOptionsProps<KbnNetworkVisParams>) => (
+export const KbnRadarOptions = (props: VisOptionsProps<KbnRadarVisParams>) => (
   <Suspense fallback={<EuiLoadingSpinner />}>
-    <KbnNetworkOptionsComponent {...props} />
+    <KbnRadarOptionsComponent {...props} />
   </Suspense>
 );

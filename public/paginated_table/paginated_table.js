@@ -22,7 +22,7 @@ import _ from 'lodash';
 import AggConfigResult from '../data_load/agg_config_result';
 import paginatedTableTemplate from './paginated_table.html';
 
-export function NetworkPaginatedTable($filter) {
+export function RadarPaginatedTable($filter) {
   const orderBy = $filter('orderBy');
 
   return {
@@ -43,7 +43,7 @@ export function NetworkPaginatedTable($filter) {
       totalFunc: '=',
       filter: '='
     },
-    controllerAs: 'networkPaginatedTable',
+    controllerAs: 'radarPaginatedTable',
     controller: function ($scope) {
       const self = this;
       self.sort = {
@@ -118,7 +118,7 @@ export function NetworkPaginatedTable($filter) {
         'rows',
         'columns',
         '[]sort',
-        '[]networkPaginatedTable.sort'
+        '[]radarPaginatedTable.sort'
       ], resortRows);
     }
   };

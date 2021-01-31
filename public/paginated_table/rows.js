@@ -22,7 +22,7 @@ import _ from 'lodash';
 import AggConfigResult from '../data_load/agg_config_result';
 import tableCellFilterHtml from './table_cell_filter.html';
 
-export function KbnNetworkRows($compile) {
+export function KbnRadarRows($compile) {
   return {
     restrict: 'A',
     link: function ($scope, $el, attr) {
@@ -33,7 +33,7 @@ export function KbnNetworkRows($compile) {
 
         function createFilterableCell(aggConfigResult) {
           const $template = $(tableCellFilterHtml);
-          $template.addClass('kbnKbnNetworkCellFilter__hover');
+          $template.addClass('kbnKbnRadarCellFilter__hover');
 
           const scope = $scope.$new();
 
@@ -119,8 +119,8 @@ export function KbnNetworkRows($compile) {
       }
 
       $scope.$watchMulti([
-        attr.kbnNetworkRows,
-        attr.kbnNetworkRowsMin
+        attr.kbnRadarRows,
+        attr.kbnRadarRowsMin
       ], function (vals) {
         let rows = vals[0];
         const min = vals[1];
