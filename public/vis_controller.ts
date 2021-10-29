@@ -16,13 +16,13 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import { CoreSetup, PluginInitializerContext } from 'kibana/public';
+import { CoreSetup, PluginInitializerContext } from '../../../src/core/public';
 import angular, { IModule, auto, IRootScopeService, IScope, ICompileService } from 'angular';
 import $ from 'jquery';
 
 import { VisParams, ExprVis } from '../../../src/plugins/visualizations/public';
 import { getAngularModule } from './get_inner_angular';
-import { getKibanaLegacy } from './services';
+import { getOpensearchDashboardsLegacy } from './services';
 import { initTableVisLegacyModule } from './table_vis_legacy_module';
 
 const innerAngularName = 'kibana/kbn_radar_vis';
@@ -65,7 +65,7 @@ export function getKbnRadarVisualizationController(
     }
 
     async render(esResponse: object, visParams: VisParams) {
-      getKibanaLegacy().loadFontAwesome();
+      getOpensearchDashboardsLegacy().loadFontAwesome();
       await this.initLocalAngular();
 
       return new Promise(async (resolve, reject) => {

@@ -16,5 +16,10 @@
   "dependencies": {
     "chart.js": "2.7.1",
     "randomcolor": "0.5.3"
+  },
+  "scripts": {
+    "build": "yarn plugin-helpers build",
+    "plugin-helpers": "node ../../scripts/plugin_helpers",
+    "osd": "node ../../scripts/osd"
   }
 }
